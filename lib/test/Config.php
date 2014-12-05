@@ -7,6 +7,7 @@ class Config extends Singleton
 	protected $_cfgdir = 'cfg';
 	protected $_config = array();
 	protected $_name;
+	protected $_use_dir='default';
 
 	// public function __construct()
 	// {
@@ -33,6 +34,10 @@ class Config extends Singleton
 		$this->_use($name, true);
 	}
 
+	public function getUserDir(){
+		return $this->_use_dir;
+	}
+
 	public function applyAny( array $dirs)
 	{
 		$name = array_shift($dirs);
@@ -41,6 +46,7 @@ class Config extends Singleton
 			$name = "{$this->_name}-$name";
 			if($this->_check_use($name)){
 				$this->_use($name, true);
+				$this->_use_dir=$name;
 				return true;
 			}
 		}
