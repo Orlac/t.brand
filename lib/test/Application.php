@@ -8,11 +8,10 @@ class Application extends Singleton
 
 	public function run()
 	{
-		$dirs = S('Request')->getDirs();
-
-		if( count($dirs) && (($dirs[0] == 'brand1') || ($dirs[0] == 'brand2')) )
+		$dirs = (array) S('Request')->getDirs();
+		if( S('Config')->applyAny($dirs) )
 		{
-			S('Config')->apply(array_shift($dirs));
+			array_shift($dirs);
 		}
 
 		if( !count($dirs) )

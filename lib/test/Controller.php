@@ -12,11 +12,13 @@ class Controller
 		$this->tpl = S('Template');
 		$this->req = S('Request');
 		$action = $this->req->getDir(0);
-
-		if( ($action == 'brand1') || ($action == 'brand2') )
-		{
+		if(S('Config')->getIsConfigDir($action)){
 			$this->tpl->setGlob('baseurl', "/$action");
 		}
+		// if( ($action == 'brand1') || ($action == 'brand2') )
+		// {
+		// 	$this->tpl->setGlob('baseurl', "/$action");
+		// }
 		else
 		{
 			$this->tpl->setGlob('baseurl', '');
@@ -45,10 +47,13 @@ class Controller
 	private function _performChecks()
 	{
 		$action = S('Request')->getDir(0);
-		if( $action == 'brand1' )
-		{
+		if(S('Config')->getIsConfigDir($action)){
 			$action = S('Request')->getDir(1);
 		}
+		// if( $action == 'brand1' )
+		// {
+		// 	$action = S('Request')->getDir(1);
+		// }
 
 		if( !$this->_isSubscribed() && ($action != 'subscribe') )
 		{
