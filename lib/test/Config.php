@@ -8,10 +8,10 @@ class Config extends Singleton
 	protected $_config = array();
 	protected $_name;
 
-	public function __construct()
-	{
-		$this->_use('default');
-	}
+	// public function __construct()
+	// {
+	// 	$this->_use('default');
+	// }
 
 	public function set($name)
 	{
