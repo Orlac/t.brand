@@ -13,7 +13,13 @@ class Loader
 
     public static function includeClass($class)
     {
-        require_once(PROJECTROOT . '/' . self::$_libdir . '/' . strtr($class, '_\\', '//') . '.php');
+        $file = PROJECTROOT . '/' . self::$_libdir . '/' . strtr($class, '_\\', '//') . '.php';
+        if(is_file($file)){
+            require_once($file);
+        }else{
+            throw new \Exception("class not found ".$file);
+        }
+        
     }
 }
 
